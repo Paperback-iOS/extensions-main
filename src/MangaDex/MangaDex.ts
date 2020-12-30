@@ -369,15 +369,29 @@ export class MangaDex extends Source {
     return createRequestObject({
       url: CACHE_SEARCH + `?page=${page}&items=${items}`,
       method: 'POST',
+      // We cant just JSON.stringify the `SearchRequest` object
+      // so this is necessary
       data: JSON.stringify({
         title: query.title,
+        includeDemographic: query.includeDemographic?.map(x => parseInt(x)),
+        includeTheme: query.includeTheme?.map(x => parseInt(x)),
+        includeFormat: query.includeFormat?.map(x => parseInt(x)),
+        includeContent: query.includeContent?.map(x => parseInt(x)),
+        includeGenre: query.includeGenre?.map(x => parseInt(x)),
+        excludeDemographic: query.excludeDemographic?.map(x => parseInt(x)),
+        excludeTheme: query.excludeTheme?.map(x => parseInt(x)),
+        excludeFormat: query.excludeFormat?.map(x => parseInt(x)),
+        excludeContent: query.excludeContent?.map(x => parseInt(x)),
+        excludeGenre: query.excludeGenre?.map(x => parseInt(x)),
+        includeOperator: query.includeOperator,
+        excludeOperator: query.excludeOperator,
+        author: query.author,
+        artist: query.artist,
+        status: query.status,
+        hStatus: query.hStatus,
       }),
       headers: {
         'content-type': 'application/json',
-      },
-      metadata: {
-        page: page,
-        query: query,
       },
     })
   }
