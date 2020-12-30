@@ -483,7 +483,7 @@ exports.MangaDex = void 0;
 const paperback_extensions_common_1 = require("paperback-extensions-common");
 class MangaDex extends paperback_extensions_common_1.Source {
     get version() {
-        return '1.1.1';
+        return '1.1.2';
     }
     get name() {
         return 'SafeDex';
